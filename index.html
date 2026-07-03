@@ -11,17 +11,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --bg: {{colors.bg}};
-      --bg2: {{colors.bg2}};
-      --card: {{colors.card}};
-      --ch: {{colors.ch}};
-      --chm: {{colors.chm}};
-      --chl: {{colors.chl}};
-      --tr: {{colors.tr}};
-      --trd: {{colors.trd}};
-      --ol: {{colors.ol}};
-      --oll: {{colors.oll}};
-      --am: {{colors.am}};
+      --bg: #f2ebe0;
+      --bg2: #e9e0d3;
+      --card: #faf7f2;
+      --ch: #3b2a1a;
+      --chm: #5c4430;
+      --chl: #8a7060;
+      --tr: #c46b42;
+      --trd: #9e5535;
+      --ol: #5a6b3a;
+      --oll: #7d9170;
+      --am: #b8923e;
       --bdr: rgba(59, 42, 26, .1);
       --bdh: rgba(59, 42, 26, .25)
     }
@@ -386,6 +386,13 @@
       line-height: 1.8;
       max-width: 650px;
       margin: 0 auto
+    }
+
+    #intro .ni {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--tr);
+      font-style: normal
     }
 
     #countdown {
@@ -915,6 +922,8 @@
       color: var(--chm)
     }
 
+
+
     footer {
       background: var(--ch);
       text-align: center;
@@ -1089,6 +1098,8 @@
       right: 5%
     }
 
+
+
     @media(max-width:640px) {
       .gg {
         grid-template-columns: 1fr 1fr;
@@ -1150,7 +1161,7 @@
 
   <div id="loader">
     <div class="ll"></div>
-    <p>{{hero.names}}</p>
+    <p>Gibran & Lucy</p>
   </div>
   <div class="sls">
     <div class="sl2 sl2-l"></div>
@@ -1165,14 +1176,16 @@
     <div class="lb-ct" id="lbCount"></div>
   </div>
 
+
+
   <section id="hero">
     <div id="hero-bg"></div>
     <div id="hero-ov"></div>
     <div class="pc" id="particles"></div>
     <div class="hc">
-      <p class="hdt ha" data-delay="600">Nos casamos ya</p>
-      <h1 class="hn ha" data-delay="1000">Gibran <span class="amp">&</span> Lucy</h1>
-      <p class="htg ha" data-delay="1400">Nos gustaría que fueras parte de este momento especial</p>
+      <p class="hdt ha" data-delay="600">Nos casamos</p>
+      <h1 class="hn ha" data-delay="1000">Gibran<span class="amp">&</span>Lucy</h1>
+      <p class="htg ha" data-delay="1400">Nos gustaria que fueras parte de este momento especial</p>
       <div class="hln ha" data-delay="1700"></div>
     </div>
     <div class="hs ha" data-delay="2200"><span>Descubre</span>
@@ -1197,7 +1210,7 @@
     <div class="sin">
       <p class="sl rv">Falta poco</p>
       <h2 class="st rv">Cuenta regresiva para el gran día</h2>
-      <h2 class="st rv">{{date.fullDate}}</h2>
+      <h2 class="st rv">01 de agosto 2026</h2>
       <div class="sdv rv">
         <div class="ln"></div>
         <div class="dm"></div>
@@ -1228,14 +1241,14 @@
         <div class="ecd rv rd1">
           <div class="eci"><i class="fa-solid fa-church"></i></div>
           <h3 class="ect">Ceremonia</h3>
-          <p class="ecm">{{details.ceremonia.time}}</p>
-          <p class="ecd-d">{{details.ceremonia.locationName}}<br>{{details.ceremonia.address}}</p>
+          <p class="ecm">4:30 PM</p>
+          <p class="ecd-d">Parroquia del Buen Pastor<br>Chihuahua, Chih., México</p>
         </div>
         <div class="ecd rv rd2">
           <div class="eci"><i class="fa-solid fa-champagne-glasses"></i></div>
           <h3 class="ect">Recepción</h3>
-          <p class="ecm">{{details.recepcion.time}}</p>
-          <p class="ecd-d">{{details.recepcion.locationName}}<br>{{details.recepcion.address}}</p>
+          <p class="ecm">9:00 PM</p>
+          <p class="ecd-d">Jardín Los Moros<br>Chihuahua, Chih., México</p>
         </div>
       </div>
     </div>
@@ -1251,10 +1264,18 @@
         <div class="ln"></div>
       </div>
       <div class="gg rv" id="galleryGrid">
-        <div class="gi" data-i="0"><img src="https://lh3.googleusercontent.com/d/1B_g1F8NqItkOnsZ4knU8vzJx4-VW9vF3" alt="Foto 0" loading="lazy"></div>
-        <div class="gi" data-i="1"><img src="https://lh3.googleusercontent.com/d/1LcZZZ1cKlTMKk61kzeXgQzhlTjENN1El" alt="Foto 1" loading="lazy"></div>
-        <div class="gi" data-i="2"><img src="https://lh3.googleusercontent.com/d/1byYp0eaLgbDflMqBwBikfjmMs7IjoNBe" alt="Foto 2" loading="lazy"></div>
-        <div class="gi" data-i="3"><img src="https://lh3.googleusercontent.com/d/1isY9ydLz405tPK54GkvGsxQwZO62EQAB" alt="Foto 3" loading="lazy"></div>
+        <div class="gi" data-i="0"><img
+            src="https://lh3.googleusercontent.com/d/1B_g1F8NqItkOnsZ4knU8vzJx4-VW9vF3"
+            alt="Escalinatas" loading="lazy"></div>
+        <div class="gi" data-i="1"><img
+            src="https://lh3.googleusercontent.com/d/1LcZZZ1cKlTMKk61kzeXgQzhlTjENN1El"
+            alt="Bajo el árbol" loading="lazy"></div>
+        <div class="gi" data-i="2"><img
+            src="https://lh3.googleusercontent.com/d/1byYp0eaLgbDflMqBwBikfjmMs7IjoNBe"
+            alt="Tomados de la mano" loading="lazy"></div>
+        <div class="gi" data-i="3"><img
+            src="https://lh3.googleusercontent.com/d/1isY9ydLz405tPK54GkvGsxQwZO62EQAB"
+            alt="Juntos" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1290,21 +1311,21 @@
       <div class="lw">
         <div class="rv rd1">
           <div class="eci"><i class="fa-solid fa-church" style="font-size:1.2rem"></i></div>
-          <p class="ln2">{{details.ceremonia.locationName}}</p>
-          <p class="la">{{details.ceremonia.address}}</p><span class="ltb">{{details.ceremonia.time}} — Ceremonia</span>
+          <p class="ln2">Parroquia del Buen Pastor</p>
+          <p class="la">Chihuahua, Chihuahua, México</p><span class="ltb">4:30 PM — Ceremonia</span>
           <div class="mf"><iframe
-              src="{{locations.ceremonia.iframeUrl}}"
-              allowfullscreen loading="lazy"></iframe></div><a href="{{locations.ceremonia.mapUrl}}"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-106.1%2C28.625%2C-106.07%2C28.645&layer=mapnik"
+              allowfullscreen loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/w5j4ZS4Xmn5JHjTg8"
             target="_blank" rel="noopener" class="mb"><i class="fa-solid fa-location-arrow"></i> Abrir en Google
             Maps</a>
         </div>
         <div class="rv rd2">
           <div class="eci"><i class="fa-solid fa-champagne-glasses" style="font-size:1.2rem"></i></div>
-          <p class="ln2">{{details.recepcion.locationName}}</p>
-          <p class="la">{{details.recepcion.address}}</p><span class="ltb">{{details.recepcion.time}} — Recepción y Fiesta</span>
+          <p class="ln2">Jardín Los Moros</p>
+          <p class="la">Chihuahua, Chihuahua, México</p><span class="ltb">9:00 PM — Recepción y Fiesta</span>
           <div class="mf"><iframe
-              src="{{locations.recepcion.iframeUrl}}"
-              allowfullscreen loading="lazy"></iframe></div><a href="{{locations.recepcion.mapUrl}}"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-106.12%2C28.62%2C-106.04%2C28.67&layer=mapnik"
+              allowfullscreen loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/caoTqonBDbkGiABZ7"
             target="_blank" rel="noopener" class="mb"><i class="fa-solid fa-location-arrow"></i> Abrir en Google
             Maps</a>
         </div>
@@ -1324,8 +1345,9 @@
         <div class="ln"></div>
       </div>
       <div class="rsvp-wrap rv">
-        <p class="rsvp-text">Nos encantaría saber si nos acompañarás en este día tan especial. Haz clic en el botón para completar tu confirmación.</p>
-        <a href="{{rsvp.formUrl}}"
+        <p class="rsvp-text">Nos encantaría saber si nos acompañarás en este día tan especial. Haz clic en el botón para
+          completar tu confirmación.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuwT7cbIGDAAw6__VCHYget_YsNn2sa4Gmk9GmQsQiso6HVA/viewform?usp=header"
           target="_blank" rel="noopener" class="rsvp-btn">
           <i class="fa-solid fa-envelope-open-text"></i> Confirmar asistencia
         </a>
@@ -1343,10 +1365,13 @@
         <div class="dm"></div>
         <div class="ln"></div>
       </div>
-      <p class="gtx rv">Tu presencia es nuestro mejor regalo. Si deseas hacernos un detalle adicional, agradeceremos tu aportación en sobre con efectivo el día del evento.</p>
+      <p class="gtx rv">Tu presencia es nuestro mejor regalo. Si deseas hacernos un detalle adicional, agradeceremos tu
+        aportación en sobre con efectivo el día del evento.</p>
       <p class="te-esperamos rv">¡Te esperamos!</p>
     </div>
   </section>
+
+
 
   <footer>
     <p class="fn">Gibran & Lucy</p>
@@ -1400,7 +1425,7 @@
     var isP = false;
     var audio = new Audio('https://files.catbox.moe/b3nxmg.mp3');
     audio.loop = true;
-    audio.volume = {{music.volume}};
+    audio.volume = 0.3;
 
     // Función para intentar reproducir la música
     function playMusic() {
