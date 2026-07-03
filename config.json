@@ -1,0 +1,69 @@
+{
+  "hero": {
+    "title": "Nos casamos ya",
+    "names": "Gibran & Lucy",
+    "subtitle": "Nos gustaría que fueras parte de este momento especial"
+  },
+  "history": {
+    "text": "Después de incontables momentos compartidos, risas, aprendizajes y sueños, hemos decidido escribir un nuevo capítulo. Nos llena de felicidad compartirles este día con las personas que han sido parte de nuestro camino."
+  },
+  "date": {
+    "title": "Sábado",
+    "fullDate": "01 de Agosto de 2026",
+    "targetDate": "2026-08-01T16:30:00-06:00"
+  },
+  "details": {
+    "ceremonia": {
+      "time": "4:30 PM",
+      "locationName": "Parroquia del Buen Pastor",
+      "address": "Chihuahua, Chih., México"
+    },
+    "recepcion": {
+      "time": "9:00 PM",
+      "locationName": "Jardín Los Moros",
+      "address": "Chihuahua, Chih., México"
+    }
+  },
+  "gallery": [
+    "https://lh3.googleusercontent.com/d/1B_g1F8NqItkOnsZ4knU8vzJx4-VW9vF3",
+    "https://lh3.googleusercontent.com/d/1LcZZZ1cKlTMKk61kzeXgQzhlTjENN1El",
+    "https://lh3.googleusercontent.com/d/1byYp0eaLgbDflMqBwBikfjmMs7IjoNBe",
+    "https://lh3.googleusercontent.com/d/1isY9ydLz405tPK54GkvGsxQwZO62EQAB"
+  ],
+  "dresscode": {
+    "type": "Formal",
+    "description": "Te pedimos vestir con elegancia para esta celebración especial.",
+    "note": "Agradecemos su comprensión: Evento exclusivo para adultos (no niños)."
+  },
+  "locations": {
+    "ceremonia": {
+      "mapUrl": "https://maps.app.goo.gl/w5j4ZS4Xmn5JHjTg8",
+      "iframeUrl": "https://www.openstreetmap.org/export/embed.html?bbox=-106.1%2C28.625%2C-106.07%2C28.645&layer=mapnik"
+    },
+    "recepcion": {
+      "mapUrl": "https://maps.app.goo.gl/caoTqonBDbkGiABZ7",
+      "iframeUrl": "https://www.openstreetmap.org/export/embed.html?bbox=-106.12%2C28.62%2C-106.04%2C28.67&layer=mapnik"
+    }
+  },
+  "rsvp": {
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfuwT7cbIGDAAw6__VCHYget_YsNn2sa4Gmk9GmQsQiso6HVA/viewform?usp=header",
+    "text": "Nos encantaría saber si nos acompañarás en este día tan especial. Haz clic en el botón para completar tu confirmación."
+  },
+  "music": {
+    "url": "https://files.catbox.moe/b3nxmg.mp3",
+    "volume": 0.3
+  },
+  "colors": {
+    "bg": "#f2ebe0",
+    "bg2": "#e9e0d3",
+    "card": "#faf7f2",
+    "ch": "#3b2a1a",
+    "chm": "#5c4430",
+    "chl": "#8a7060",
+    "tr": "#c46b42",
+    "trd": "#9e5535",
+    "ol": "#5a6b3a",
+    "oll": "#7d9170",
+    "am": "#b8923e"
+  }
+}
