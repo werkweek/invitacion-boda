@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación - Gibran & Lucy</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f2ebe0;
+      --bg2: #e9e0d3;
+      --card: #faf7f2;
+      --ch: #3b2a1a;
+      --chm: #5c4430;
+      --chl: #8a7060;
+      --tr: #c46b42;
+      --trd: #9e5535;
+      --ol: #5a6b3a;
+      --oll: #7d9170;
+      --am: #b8923e;
+      --bdr: rgba(59, 42, 26, .1);
+      --bdh: rgba(59, 42, 26, .25)
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--ch);
+      overflow-x: hidden
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--ch);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s, visibility 1s
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none
+    }
+
+    #loader .ll {
+      width: 1px;
+      height: 0;
+      background: linear-gradient(to bottom, transparent, var(--tr), transparent);
+      animation: lg 2.2s ease forwards
+    }
+
+    @keyframes lg {
+      0% {
+        height: 0;
+        opacity: 0
+      }
+
+      50% {
+        height: 120px;
+        opacity: 1
+      }
+
+      100% {
+        height: 120px;
+        opacity: 0
+      }
+    }
+
+    #loader p {
+      font-family: 'Playfair Display', serif;
+      font-size: .85rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--tr);
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fu .6s ease .5s forwards
+    }
+
+    @keyframes fu {
+      from {
+        opacity: 0;
+        transform: translateY(15px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden
+    }
+
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://lh3.googleusercontent.com/d/1B_g1F8NqItkOnsZ4knU8vzJx4-VW9vF3') center 30%/cover no-repeat;
+      filter: brightness(.22) saturate(.5);
+      transform: scale(1.1);
+      transition: transform 10s
+    }
+
+    #hero.loaded #hero-bg {
+      transform: scale(1)
+    }
+
+    #hero-ov {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(59, 42, 26, .2), transparent 70%), linear-gradient(to bottom, rgba(59, 42, 26, .15), rgba(59, 42, 26, .8))
+    }
+
+    .pc {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .pt {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      opacity: 0;
+      animation: pf linear infinite
+    }
+
+    @keyframes pf {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0)
+      }
+
+      10% {
+        opacity: .6
+      }
+
+      90% {
+        opacity: .15
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-10vh) scale(1)
+      }
+    }
+
+    .hc {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem
+    }
+
+    .hdt {
+      font-weight: 300;
+      font-size: 1.15rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--tr);
+      opacity: 0;
+      transform: translateY(20px)
+    }
+
+    .hn {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 1.1;
+      color: #f2ebe0;
+      margin: 1.5rem 0;
+      opacity: 0;
+      transform: translateY(40px)
+    }
+
+    .hn .amp {
+      display: block;
+      font-style: italic;
+      font-size: .5em;
+      color: var(--tr);
+      margin: .3em 0
+    }
+
+    .htg {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: rgba(242, 235, 224, .65);
+      opacity: 0;
+      transform: translateY(20px)
+    }
+
+    .hln {
+      width: 60px;
+      height: 1px;
+      background: var(--tr);
+      margin: 2rem auto;
+      opacity: 0;
+      transform: scaleX(0)
+    }
+
+    .hs {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      opacity: 0
+    }
+
+    .hs span {
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(242, 235, 224, .4)
+    }
+
+    .scr {
+      width: 1px;
+      height: 40px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(242, 235, 224, .1)
+    }
+
+    .scr::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--tr);
+      animation: sd 2s ease infinite
+    }
+
+    @keyframes sd {
+      0% {
+        top: -50%
+      }
+
+      100% {
+        top: 150%
+      }
+    }
+
+    .ha {
+      transition: opacity 1s, transform 1s
+    }
+
+    .ha.show {
+      opacity: 1 !important;
+      transform: translateY(0) scaleX(1) !important
+    }
+
+    section {
+      position: relative;
+      padding: 6rem 1.5rem;
+      overflow: hidden
+    }
+
+    .sin {
+      max-width: 900px;
+      margin: 0 auto
+    }
+
+    .sl {
+      font-weight: 400;
+      font-size: .65rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--tr);
+      text-align: center;
+      margin-bottom: 1rem
+    }
+
+    .st {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+      color: var(--ch);
+      line-height: 1.2;
+      margin-bottom: 1rem
+    }
+
+    .sdv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem auto;
+      max-width: 200px
+    }
+
+    .sdv .ln {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--chl))
+    }
+
+    .sdv .ln:last-child {
+      background: linear-gradient(to left, transparent, var(--chl))
+    }
+
+    .sdv .dm {
+      width: 6px;
+      height: 6px;
+      background: var(--tr);
+      transform: rotate(45deg);
+      flex-shrink: 0
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s, transform .8s
+    }
+
+    .rv.vis {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .rd1 {
+      transition-delay: .15s
+    }
+
+    .rd2 {
+      transition-delay: .3s
+    }
+
+    .rd3 {
+      transition-delay: .45s
+    }
+
+    .rd4 {
+      transition-delay: .6s
+    }
+
+    #intro {
+      background: var(--bg)
+    }
+
+    #intro .qt {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      text-align: center;
+      color: var(--chm);
+      line-height: 1.8;
+      max-width: 650px;
+      margin: 0 auto
+    }
+
+    #intro .ni {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--tr);
+      font-style: normal
+    }
+
+    #countdown {
+      background: var(--bg2);
+      text-align: center
+    }
+
+    .cg {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1rem, 4vw, 3rem);
+      margin-top: 2.5rem
+    }
+
+    .ci {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px
+    }
+
+    .cn {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--tr);
+      line-height: 1
+    }
+
+    .cl {
+      font-weight: 300;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--chl);
+      margin-top: .5rem
+    }
+
+    .csep {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--trd);
+      align-self: flex-start;
+      margin-top: .2rem;
+      opacity: .5
+    }
+
+    #event {
+      background: var(--bg)
+    }
+
+    .ec {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem
+    }
+
+    .ecd {
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .4s, transform .4s, box-shadow .4s;
+      box-shadow: 0 2px 12px rgba(59, 42, 26, .04)
+    }
+
+    .ecd:hover {
+      border-color: var(--bdh);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(59, 42, 26, .08)
+    }
+
+    .ecd::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background: var(--tr)
+    }
+
+    .eci {
+      font-size: 1.5rem;
+      color: var(--tr);
+      margin-bottom: 1.5rem
+    }
+
+    .ect {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: var(--ch);
+      margin-bottom: .5rem
+    }
+
+    .ecm {
+      font-weight: 400;
+      font-size: .8rem;
+      letter-spacing: .15em;
+      color: var(--tr);
+      margin-bottom: 1.2rem
+    }
+
+    .ecd-d {
+      font-weight: 300;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--chl)
+    }
+
+    #gallery {
+      background: var(--bg2);
+      padding-bottom: 4rem
+    }
+
+    .gg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 220px;
+      gap: .5rem;
+      margin-top: 3rem;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .gg .gi:nth-child(1) {
+      grid-row: span 2
+    }
+
+    .gg .gi:nth-child(9) {
+      grid-row: span 2
+    }
+
+    .gg .gi:nth-child(5) {
+      grid-column: span 2
+    }
+
+    .gi {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer
+    }
+
+    .gi img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .8s, filter .8s;
+      filter: saturate(.85) brightness(.95)
+    }
+
+    .gi:hover img {
+      transform: scale(1.06);
+      filter: saturate(1) brightness(1)
+    }
+
+    .gi::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      transition: border-color .4s;
+      pointer-events: none
+    }
+
+    .gi:hover::after {
+      border-color: rgba(196, 107, 66, .35)
+    }
+
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      background: rgba(30, 20, 12, .92);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: zoom-out;
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .lb.act {
+      display: flex;
+      opacity: 1
+    }
+
+    .lb img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5)
+    }
+
+    .lb-c {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(242, 235, 224, .6);
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: color .3s;
+      z-index: 8001
+    }
+
+    .lb-c:hover {
+      color: var(--tr)
+    }
+
+    .lb-n {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(242, 235, 224, .1);
+      border: 1px solid rgba(242, 235, 224, .15);
+      color: rgba(242, 235, 224, .7);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: .9rem;
+      transition: all .3s
+    }
+
+    .lb-n:hover {
+      background: rgba(242, 235, 224, .2);
+      color: #f2ebe0
+    }
+
+    .lb-p {
+      left: 1.5rem
+    }
+
+    .lb-nx {
+      right: 1.5rem
+    }
+
+    .lb-ct {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 300;
+      font-size: .7rem;
+      color: rgba(242, 235, 224, .4);
+      letter-spacing: .2em
+    }
+
+    #dresscode {
+      background: var(--bg);
+      text-align: center
+    }
+
+    .dc-m {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--ch);
+      margin-top: .5rem
+    }
+
+    .dc-s {
+      font-weight: 300;
+      font-size: 0.98rem;
+      color: var(--chl);
+      margin-top: .8rem;
+      line-height: 1.7;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .fd2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 0 auto 2.5rem;
+      max-width: 300px;
+      color: var(--oll);
+      font-size: .9rem;
+      opacity: .5
+    }
+
+    .fd2 .fl {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--oll), transparent)
+    }
+
+    #location {
+      background: var(--bg2);
+      text-align: center
+    }
+
+    .lw {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+      text-align: center
+    }
+
+    .ln2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 1.3rem;
+      color: var(--ch);
+      margin-bottom: .3rem
+    }
+
+    .la {
+      font-weight: 300;
+      font-size: 0.88rem;
+      color: var(--chl);
+      letter-spacing: .04em;
+      margin-bottom: 1.2rem
+    }
+
+    .ltb {
+      display: inline-block;
+      padding: .3rem 1rem;
+      background: rgba(196, 107, 66, .1);
+      border-radius: 20px;
+      font-weight: 400;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: var(--tr);
+      margin-bottom: 1.2rem
+    }
+
+    .mf {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--bdr);
+      background: var(--bg)
+    }
+
+    .mf iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: saturate(.6) brightness(.9) sepia(.15);
+      transition: filter .6s
+    }
+
+    .mf:hover iframe {
+      filter: saturate(.8) brightness(.95) sepia(.05)
+    }
+
+    .mb {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: 1rem;
+      padding: .7rem 1.6rem;
+      background: transparent;
+      border: 1px solid var(--chl);
+      color: var(--chm);
+      font-weight: 400;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: all .4s;
+      cursor: pointer
+    }
+
+    .mb:hover {
+      background: var(--ch);
+      color: var(--bg);
+      border-color: var(--ch)
+    }
+
+    /* ===== RSVP solo botón ===== */
+    #rsvp {
+      background: var(--bg);
+      text-align: center
+    }
+
+    .rsvp-wrap {
+      text-align: center
+    }
+
+    .rsvp-text {
+      font-weight: 300;
+      font-size: 1.0rem;
+      line-height: 1.8;
+      color: var(--chl);
+      max-width: 480px;
+      margin: 0 auto 2.5rem
+    }
+
+    .rsvp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1.1rem 3rem;
+      background: var(--ch);
+      border: 1px solid var(--ch);
+      color: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: .78rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .4s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(59, 42, 26, .15);
+    }
+
+    .rsvp-btn:hover {
+      background: var(--tr);
+      border-color: var(--tr);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(196, 107, 66, .3);
+    }
+
+    .rsvp-btn:active {
+      transform: translateY(0)
+    }
+
+    .rsvp-note {
+      font-weight: 300;
+      font-size: .72rem;
+      color: var(--chl);
+      margin-top: 1.2rem;
+      opacity: .7;
+    }
+
+    #gifts {
+      background: var(--bg2);
+      text-align: center
+    }
+
+    .gtx {
+      font-weight: 300;
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: var(--chl);
+      max-width: 500px;
+      margin: 1rem auto 2.5rem
+    }
+
+    .te-esperamos {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      color: var(--tr);
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center
+    }
+
+    .gqa {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--bdr);
+      border-radius: 6px;
+      background: var(--card);
+      max-width: 320px;
+      margin: 0 auto;
+      box-shadow: 0 2px 16px rgba(59, 42, 26, .04)
+    }
+
+    .qrp {
+      width: 160px;
+      height: 160px;
+      border: 2px dashed var(--chl);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      transition: border-color .3s
+    }
+
+    .qrp:hover {
+      border-color: var(--tr)
+    }
+
+    .qrp i {
+      font-size: 2rem;
+      color: var(--chl)
+    }
+
+    .qrp span {
+      font-weight: 300;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--chl)
+    }
+
+    .gn {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--chm)
+    }
+
+
+
+    footer {
+      background: var(--ch);
+      text-align: center;
+      padding: 3rem 1.5rem
+    }
+
+    footer .fn {
+      font-family: 'Playfair Display', serif;
+      font-weight: 300;
+      font-size: 1.5rem;
+      color: rgba(242, 235, 224, .7)
+    }
+
+    footer .fd {
+      font-weight: 200;
+      font-size: .65rem;
+      letter-spacing: .4em;
+      color: rgba(242, 235, 224, .35);
+      margin-top: .5rem
+    }
+
+    .mt {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 1000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      color: var(--tr);
+      font-size: .9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+      box-shadow: 0 2px 12px rgba(59, 42, 26, .1)
+    }
+
+    .mt:hover {
+      border-color: var(--tr)
+    }
+
+    .mt.playing .mb2 {
+      display: flex
+    }
+
+    .mt.playing .mip {
+      display: none
+    }
+
+    .mt:not(.playing) .mb2 {
+      display: none
+    }
+
+    .mb2 {
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px
+    }
+
+    .mb2 span {
+      width: 2px;
+      background: var(--tr);
+      border-radius: 1px;
+      animation: mbr .8s ease-in-out infinite alternate
+    }
+
+    .mb2 span:nth-child(1) {
+      height: 4px;
+      animation-delay: 0s
+    }
+
+    .mb2 span:nth-child(2) {
+      height: 10px;
+      animation-delay: .2s
+    }
+
+    .mb2 span:nth-child(3) {
+      height: 6px;
+      animation-delay: .4s
+    }
+
+    .mb2 span:nth-child(4) {
+      height: 12px;
+      animation-delay: .1s
+    }
+
+    @keyframes mbr {
+      0% {
+        height: 3px
+      }
+
+      100% {
+        height: 14px
+      }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--ch);
+      border: 1px solid var(--trd);
+      color: var(--bg);
+      padding: 1rem 2rem;
+      font-weight: 300;
+      font-size: .8rem;
+      border-radius: 4px;
+      z-index: 9999;
+      opacity: 0;
+      transition: all .5s;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: 90vw;
+      text-align: center
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    .orn {
+      position: absolute;
+      pointer-events: none;
+      opacity: .06
+    }
+
+    .orn-tl {
+      top: 0;
+      left: 0;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(ellipse at 0% 0%, var(--tr), transparent 60%)
+    }
+
+    .orn-br {
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(ellipse at 100% 100%, var(--ol), transparent 60%)
+    }
+
+    .sls {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      pointer-events: none;
+      z-index: 1
+    }
+
+    .sls .sl2 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(59, 42, 26, .05) 30%, rgba(59, 42, 26, .05) 70%, transparent)
+    }
+
+    .sls .sl2-l {
+      left: 5%
+    }
+
+    .sls .sl2-r {
+      right: 5%
+    }
+
+
+
+    @media(max-width:640px) {
+      .gg {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 180px
+      }
+
+      .gg .gi:nth-child(9) {
+        grid-row: span 2
+      }
+
+      .gg .gi:nth-child(5) {
+        grid-column: span 1
+      }
+
+      .ec {
+        grid-template-columns: 1fr
+      }
+
+      .csep {
+        display: none
+      }
+
+      .sls {
+        display: none
+      }
+
+      section {
+        padding: 4rem 1rem
+      }
+
+      .lw {
+        grid-template-columns: 1fr
+      }
+
+      .lb-n {
+        display: none
+      }
+
+      .rsvp-btn {
+        padding: .95rem 2rem;
+        font-size: .72rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loader">
+    <div class="ll"></div>
+    <p>Gibran & Lucy</p>
+  </div>
+  <div class="sls">
+    <div class="sl2 sl2-l"></div>
+    <div class="sl2 sl2-r"></div>
+  </div>
+
+  <div class="lb" id="lb">
+    <button class="lb-c" id="lbClose">&times;</button>
+    <button class="lb-n lb-p" id="lbPrev"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="lb-n lb-nx" id="lbNext"><i class="fa-solid fa-chevron-right"></i></button>
+    <img src="" alt="" id="lbImg">
+    <div class="lb-ct" id="lbCount"></div>
+  </div>
+
+
+
+  <section id="hero">
+    <div id="hero-bg"></div>
+    <div id="hero-ov"></div>
+    <div class="pc" id="particles"></div>
+    <div class="hc">
+      <p class="hdt ha" data-delay="600">Nos casamos</p>
+      <h1 class="hn ha" data-delay="1000">Gibran<span class="amp">&</span>Lucy</h1>
+      <p class="htg ha" data-delay="1400">Nos gustaria que fueras parte de este momento especial</p>
+      <div class="hln ha" data-delay="1700"></div>
+    </div>
+    <div class="hs ha" data-delay="2200"><span>Descubre</span>
+      <div class="scr"></div>
+    </div>
+  </section>
+
+  <section id="intro">
+    <div class="orn orn-tl"></div>
+    <div class="sin">
+      <p class="sl rv">Nuestra historia</p>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <p class="qt rv">"Después de incontables momentos compartidos, risas, aprendizajes y sueños, hemos decidido escribir un nuevo capítulo. Nos llena de felicidad compartirles este día con las personas que han sido parte de nuestro camino."</p>
+    </div>
+  </section>
+
+  <section id="countdown">
+    <div class="sin">
+      <p class="sl rv">Falta poco</p>
+      <h2 class="st rv">Cuenta regresiva para el gran día</h2>
+      <h2 class="st rv">01 de agosto 2026</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <div class="cg rv">
+        <div class="ci"><span class="cn" id="cd-d">00</span><span class="cl">Días</span></div><span
+          class="csep">:</span>
+        <div class="ci"><span class="cn" id="cd-h">00</span><span class="cl">Horas</span></div><span
+          class="csep">:</span>
+        <div class="ci"><span class="cn" id="cd-m">00</span><span class="cl">Minutos</span></div><span
+          class="csep">:</span>
+        <div class="ci"><span class="cn" id="cd-s">00</span><span class="cl">Segundos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="event">
+    <div class="orn orn-br"></div>
+    <div class="sin">
+      <h2 class="st rv">Detalles del evento</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <div class="ec">
+        <div class="ecd rv rd1">
+          <div class="eci"><i class="fa-solid fa-church"></i></div>
+          <h3 class="ect">Ceremonia</h3>
+          <p class="ecm">4:30 PM</p>
+          <p class="ecd-d">Parroquia del Buen Pastor<br>Chihuahua, Chih., México</p>
+        </div>
+        <div class="ecd rv rd2">
+          <div class="eci"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <h3 class="ect">Recepción</h3>
+          <p class="ecm">9:00 PM</p>
+          <p class="ecd-d">Jardín Los Moros<br>Chihuahua, Chih., México</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="sin">
+      <p class="sl rv">Momentos</p>
+      <h2 class="st rv">Nuestra galería</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <div class="gg rv" id="galleryGrid">
+        <div class="gi" data-i="0"><img
+            src="https://lh3.googleusercontent.com/d/1B_g1F8NqItkOnsZ4knU8vzJx4-VW9vF3"
+            alt="Escalinatas" loading="lazy"></div>
+        <div class="gi" data-i="1"><img
+            src="https://lh3.googleusercontent.com/d/1LcZZZ1cKlTMKk61kzeXgQzhlTjENN1El"
+            alt="Bajo el árbol" loading="lazy"></div>
+        <div class="gi" data-i="2"><img
+            src="https://lh3.googleusercontent.com/d/1byYp0eaLgbDflMqBwBikfjmMs7IjoNBe"
+            alt="Tomados de la mano" loading="lazy"></div>
+        <div class="gi" data-i="3"><img
+            src="https://lh3.googleusercontent.com/d/1isY9ydLz405tPK54GkvGsxQwZO62EQAB"
+            alt="Juntos" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dresscode">
+    <div class="sin">
+      <p class="sl rv">Etiqueta</p>
+      <h2 class="st rv">Código de vestimenta</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <p class="dc-m rv">Formal</p>
+      <p class="dc-s rv" style="font-size: 0.98rem; font-weight: 400;">Te pedimos vestir con elegancia para esta celebración especial.</p>
+      <p class="dc-s rv" style="margin-top: 1rem; font-size: 1.05rem; font-weight: 500; color: var(--tr); font-style: italic;">Agradecemos su comprensión: Evento exclusivo para adultos (no niños).</p>
+      <div class="fd2 rv">
+        <div class="fl"></div><i class="fa-solid fa-leaf"></i>
+        <div class="fl"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location">
+    <div class="sin">
+      <p class="sl rv">Ubicación</p>
+      <h2 class="st rv">Cómo llegar</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <div class="lw">
+        <div class="rv rd1">
+          <div class="eci"><i class="fa-solid fa-church" style="font-size:1.2rem"></i></div>
+          <p class="ln2">Parroquia del Buen Pastor</p>
+          <p class="la">Chihuahua, Chihuahua, México</p><span class="ltb">4:30 PM — Ceremonia</span>
+          <div class="mf"><iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-106.1%2C28.625%2C-106.07%2C28.645&layer=mapnik"
+              allowfullscreen loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/w5j4ZS4Xmn5JHjTg8"
+            target="_blank" rel="noopener" class="mb"><i class="fa-solid fa-location-arrow"></i> Abrir en Google
+            Maps</a>
+        </div>
+        <div class="rv rd2">
+          <div class="eci"><i class="fa-solid fa-champagne-glasses" style="font-size:1.2rem"></i></div>
+          <p class="ln2">Jardín Los Moros</p>
+          <p class="la">Chihuahua, Chihuahua, México</p><span class="ltb">9:00 PM — Recepción y Fiesta</span>
+          <div class="mf"><iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-106.12%2C28.62%2C-106.04%2C28.67&layer=mapnik"
+              allowfullscreen loading="lazy"></iframe></div><a href="https://maps.app.goo.gl/caoTqonBDbkGiABZ7"
+            target="_blank" rel="noopener" class="mb"><i class="fa-solid fa-location-arrow"></i> Abrir en Google
+            Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP — Solo botón que abre el Google Form -->
+  <section id="rsvp">
+    <div class="orn orn-tl"></div>
+    <div class="sin">
+      <p class="sl rv">Confirmación</p>
+      <h2 class="st rv">Confirma tu asistencia</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <div class="rsvp-wrap rv">
+        <p class="rsvp-text">Nos encantaría saber si nos acompañarás en este día tan especial. Haz clic en el botón para
+          completar tu confirmación.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfuwT7cbIGDAAw6__VCHYget_YsNn2sa4Gmk9GmQsQiso6HVA/viewform?usp=header"
+          target="_blank" rel="noopener" class="rsvp-btn">
+          <i class="fa-solid fa-envelope-open-text"></i> Confirmar asistencia
+        </a>
+        <p class="rsvp-note">Se abrirá un formulario externo</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gifts">
+    <div class="sin">
+      <p class="sl rv">Regalo</p>
+      <h2 class="st rv">Mesa de regalos</h2>
+      <div class="sdv rv">
+        <div class="ln"></div>
+        <div class="dm"></div>
+        <div class="ln"></div>
+      </div>
+      <p class="gtx rv">Tu presencia es nuestro mejor regalo. Si deseas hacernos un detalle adicional, agradeceremos tu
+        aportación en sobre con efectivo el día del evento.</p>
+      <p class="te-esperamos rv">¡Te esperamos!</p>
+    </div>
+  </section>
+
+
+
+  <footer>
+    <p class="fn">Gibran & Lucy</p>
+    <p class="fd">1 de Agosto, 2026 — Chihuahua, Chihuahua, México</p>
+  </footer>
+
+  <button class="mt" id="mtBtn" aria-label="Música"><i class="fa-solid fa-play mip" style="font-size:.75rem"></i>
+    <div class="mb2"><span></span><span></span><span></span><span></span></div>
+  </button>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    window.addEventListener('load', function () { setTimeout(function () { document.getElementById('loader').classList.add('hidden'); document.getElementById('hero').classList.add('loaded'); document.querySelectorAll('.ha').forEach(function (e) { setTimeout(function () { e.classList.add('show') }, parseInt(e.dataset.delay) || 0) }) }, 2400) });
+
+    (function () { var c = document.getElementById('particles'); var cols = ['#c46b42', '#b8923e', '#5a6b3a', '#d4ad5a']; for (var i = 0; i < 25; i++) { var p = document.createElement('div'); p.classList.add('pt'); p.style.left = Math.random() * 100 + '%'; var sz = (Math.random() * 2.5 + 1) + 'px'; p.style.width = sz; p.style.height = sz; p.style.animationDuration = (Math.random() * 8 + 7) + 's'; p.style.animationDelay = (Math.random() * 12) + 's'; p.style.background = cols[Math.floor(Math.random() * cols.length)]; c.appendChild(p) } })();
+
+    var ed = new Date('2026-08-01T16:30:00-06:00').getTime();
+    function uc() { var df = Math.max(0, ed - Date.now()); var dd = Math.floor(df / 864e5); df %= 864e5; var hh = Math.floor(df / 36e5); df %= 36e5; var mm = Math.floor(df / 6e4); df %= 6e4; var ss = Math.floor(df / 1e3); document.getElementById('cd-d').textContent = String(dd).padStart(2, '0'); document.getElementById('cd-h').textContent = String(hh).padStart(2, '0'); document.getElementById('cd-m').textContent = String(mm).padStart(2, '0'); document.getElementById('cd-s').textContent = String(ss).padStart(2, '0') }
+    uc(); setInterval(uc, 1000);
+
+    var ro = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('vis') }) }, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.rv').forEach(function (e) { ro.observe(e) });
+
+    window.addEventListener('scroll', function () { var y = window.scrollY; if (y < window.innerHeight) { document.getElementById('hero-bg').style.transform = 'scale(' + (1 + y * .0001) + ') translateY(' + y * .3 + 'px)' } }, { passive: true });
+
+    var photos = [];
+    document.querySelectorAll('.gi').forEach(function (el) { photos.push(el.querySelector('img').src) });
+    var lbIdx = 0;
+    var lb = document.getElementById('lb');
+    var lbImg = document.getElementById('lbImg');
+    var lbCount = document.getElementById('lbCount');
+    function openLb(i) { lbIdx = i; showLb(); lb.classList.add('act'); document.body.style.overflow = 'hidden' }
+    function showLb() { lbImg.src = photos[lbIdx]; lbCount.textContent = (lbIdx + 1) + ' / ' + photos.length }
+    function closeLb() { lb.classList.remove('act'); document.body.style.overflow = '' }
+    function prevLb() { lbIdx = (lbIdx - 1 + photos.length) % photos.length; showLb() }
+    function nextLb() { lbIdx = (lbIdx + 1) % photos.length; showLb() }
+    document.querySelectorAll('.gi').forEach(function (el) { el.addEventListener('click', function () { openLb(parseInt(this.dataset.i)) }) });
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', prevLb);
+    document.getElementById('lbNext').addEventListener('click', nextLb);
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLb() });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('act')) return;
+      if (e.key === 'Escape') closeLb();
+      if (e.key === 'ArrowLeft') prevLb();
+      if (e.key === 'ArrowRight') nextLb();
+    });
+
+    var mtBtn = document.getElementById('mtBtn');
+    var isP = false;
+    var audio = new Audio('https://files.catbox.moe/b3nxmg.mp3');
+    audio.loop = true;
+    audio.volume = 0.3;
+
+    // Función para intentar reproducir la música
+    function playMusic() {
+      if (isP) return;
+      audio.play().then(function () {
+        mtBtn.classList.add('playing');
+        isP = true;
+        removeInteractionListeners();
+      }).catch(function (err) {
+        console.log('Autoplay bloqueado por el navegador, esperando interacción:', err);
+      });
+    }
+
+    // Intentar reproducir automáticamente después del loader (2.4s)
+    window.addEventListener('load', function () {
+      setTimeout(playMusic, 2400);
+    });
+
+    // Respaldos de interacción para iniciar música al hacer clic o scroll
+    function handleInteraction() {
+      playMusic();
+    }
+
+    function removeInteractionListeners() {
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('scroll', handleInteraction);
+    }
+
+    document.addEventListener('click', handleInteraction);
+    document.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('scroll', handleInteraction);
+
+    // Control manual por medio del botón flotante
+    mtBtn.addEventListener('click', function (e) {
+      e.stopPropagation(); // Evitar reactivar los listeners
+      if (!isP) {
+        audio.play().then(function () {
+          mtBtn.classList.add('playing');
+          isP = true;
+          removeInteractionListeners();
+        }).catch(function (err) {
+          console.error('Error al reproducir audio:', err);
+        });
+      } else {
+        audio.pause();
+        mtBtn.classList.remove('playing');
+        isP = false;
+        // Si el usuario silencia manualmente, eliminamos las autoreproducciones
+        removeInteractionListeners();
+      }
+    });
+
+    function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function () { t.classList.remove('show') }, 3500) }
+
+
+  </script>
+</body>
+
+</html>
